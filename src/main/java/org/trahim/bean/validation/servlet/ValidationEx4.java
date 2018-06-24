@@ -21,7 +21,7 @@ import java.util.Set;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER})
 @interface Url {
-    String message() default "Url invalid.";
+    String message() default "{example.message}";
 
     Class<?>[] groups() default {};
 
@@ -49,7 +49,7 @@ public class ValidationEx4 extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
 
-        Set<ConstraintViolation<MySite>> site = validator.validateValue(MySite.class, "site", "http://myfirstsite.com");
+        Set<ConstraintViolation<MySite>> site = validator.validateValue(MySite.class, "site", "myfirstsite.com");
         if (site.size() > 0) {
             for (ConstraintViolation violation :
                     site) {
